@@ -16,7 +16,7 @@ export default function ShowAllTask() {
       const fetchTasks = async () => {
         //ดึงข้อมูลจาก supabase (Postgres Database)
         const { data, error } = await supabase
-                                      .from('task_tb')          //ระบุชื่อตาราง
+                                      .from('bankdb')          //ระบุชื่อตาราง
                                       .select("*")              //ระบุว่าจะดึงข้อมูลคอลัมน์อะไรบ้าง
                                       .order('created_at', { ascending: false }) //เรียงลำดับข้อมูลจากใหม่ไปเก่า
         //ตรวจสอบว่ามี error หรือไม่
@@ -46,7 +46,7 @@ export default function ShowAllTask() {
               //ตัดเอาเฉพาะชื่อรูปจาก imageUrl
               const imageName = imageUrl.split('/').pop()
               //ได้ชื่อรูปมาแล้วก็ ไปลบออกจาก task_bk
-              await supabase.storage.from('task_bk').remove([imageName])
+              await supabase.storage.from('bankdb').remove([imageName])
           }
 
           //ลบข้อมูลออกจาก task_tb
@@ -155,3 +155,4 @@ export default function ShowAllTask() {
     </div>
   )
 }
+
