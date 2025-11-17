@@ -37,15 +37,15 @@ export default function ShowAllTask() {
     }
   },[])
 
-  //สร้างฟังกช์นลบข้อมูลออกจาก task_tb และลบรูปออกจาก task_bk(ถ้ามี)
+  //สร้างฟังกช์นลบข้อมูลออกจาก task_tb และลบรูปออกจาก 2berxybucket(ถ้ามี)
   const handleDeleteClick = async (id, imageUrl) => {
       //ถามยืนยันการลบข้อมูลก่อน
       if( confirm('ต้องการลบข้อมูลใช่หรือไม่?') == true){
-          //ลบรูปออกจาก task_bk(ถ้ามี)
+          //ลบรูปออกจาก 2berxybucket(ถ้ามี)
           if(imageUrl != ''){
               //ตัดเอาเฉพาะชื่อรูปจาก imageUrl
               const imageName = imageUrl.split('/').pop()
-              //ได้ชื่อรูปมาแล้วก็ ไปลบออกจาก task_bk
+              //ได้ชื่อรูปมาแล้วก็ ไปลบออกจาก 2berxybucket
               await supabase.storage.from('bankdb').remove([imageName])
           }
 
@@ -155,4 +155,5 @@ export default function ShowAllTask() {
     </div>
   )
 }
+
 
