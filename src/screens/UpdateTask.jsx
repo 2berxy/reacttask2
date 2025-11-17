@@ -46,7 +46,7 @@ export default function UpdateTask() {
       }    
     }
       
-    //ฟังก์ชันบันทึกแก้ไขข้อมูลที่ task_tb ที่ supabase
+    //ฟังก์ชันบันทึกแก้ไขข้อมูลที่ 2berxybucket ที่ supabase
     const handleUpdateClick = async (e) => {
       e.preventDefault()
       //Validate
@@ -88,7 +88,7 @@ export default function UpdateTask() {
           }
         }
 
-      //อัปเดตข้อมูลงานที่ task_tb ที่ supabase
+      //อัปเดตข้อมูลงานที่ 2berxybucket ที่ supabase
        const { error} = await supabase
                                   .from('bankdb')
                                   .update({
@@ -183,5 +183,6 @@ export default function UpdateTask() {
     </div>
   )
 }
+
 
 
