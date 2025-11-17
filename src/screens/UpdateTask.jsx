@@ -18,7 +18,7 @@ export default function UpdateTask() {
     //ดึงข้อมูลงานมาแสดงเพื่อแก้ไขต่อไป ตอนหน้าจอถูกเปิด
     useEffect(() => {
       const fetchTask = async () => {
-        const {data, error} = await supabase.from('task_tb').select('*').eq('id', id).single()
+        const {data, error} = await supabase.from('bankdb').select('*').eq('id', id).single()
 
         if(error){
           alert('เกิดข้อผิดพลาดในการดึงข้อมูลงาน กรุณาลองใหม่อีกครั้ง!!!')
@@ -72,7 +72,7 @@ export default function UpdateTask() {
     
           //อัปโหลดไปยัง storage ที่ supabase
           const { error } = await supabase.storage
-                                    .from('task_bk')
+                                    .from('bankdb')
                                     .upload(newImageFile, imageFile)
           
           if(error){
@@ -81,7 +81,7 @@ export default function UpdateTask() {
           }else{
             //ไปเอาที่อยู่ของรูปที่ storage ที่ supabase มากำหนดให้กับตัวแปร imageUrl
             const { data } = supabase.storage
-                                    .from('task_bk')
+                                    .from('bankdb')
                                     .getPublicUrl(newImageFile)
     
             imageUrl = data.publicUrl
@@ -90,7 +90,7 @@ export default function UpdateTask() {
 
       //อัปเดตข้อมูลงานที่ task_tb ที่ supabase
        const { error} = await supabase
-                                  .from('task_tb')
+                                  .from('bankdb')
                                   .update({
                                     title: title,   
                                     detail: detail,
@@ -183,4 +183,5 @@ export default function UpdateTask() {
     </div>
   )
 }
+
 
