@@ -23,7 +23,7 @@ export default function AddTask() {
     }    
   }
 
-  //สร้างฟังก์ชันจัดการการส่งข้อมูลไปบันทึกที่ task_tb และอัปโหลดรูปไปที่ task_bk
+  //สร้างฟังก์ชันจัดการการส่งข้อมูลไปบันทึกที่ bankdb และอัปโหลดรูปไปที่ task_bk
   const handleSaveClick = async (e) =>{
     e.preventDefault()
 
@@ -59,9 +59,9 @@ export default function AddTask() {
       }
     }
 
-    //ส่งข้อมูลไปบันทึกที่ task_tb
+    //ส่งข้อมูลไปบันทึกที่ bankdb
     const {error} = await supabase
-                            .from('task_tb')
+                            .from('bankdb')
                             .insert({
                               title: title,   
                               detail: detail,
@@ -153,3 +153,4 @@ export default function AddTask() {
     </div>
   )
 }
+
