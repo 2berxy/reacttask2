@@ -23,7 +23,7 @@ export default function AddTask() {
     }    
   }
 
-  //สร้างฟังก์ชันจัดการการส่งข้อมูลไปบันทึกที่ bankdb และอัปโหลดรูปไปที่ task_bk
+  //สร้างฟังก์ชันจัดการการส่งข้อมูลไปบันทึกที่ bankdb และอัปโหลดรูปไปที่ 2berxybucket
   const handleSaveClick = async (e) =>{
     e.preventDefault()
 
@@ -33,17 +33,17 @@ export default function AddTask() {
       return;
     }
 
-    //ตัวแปรเก็บที่อยู่รูปที่อัปโหลดไปที่ task_bk
+    //ตัวแปรเก็บที่อยู่รูปที่อัปโหลดไปที่ 2berxybucket
     let imageUrl = ''
 
-    //อัปโหลดรูป กรณีเลือกรูป ไปที่ task_bk
+    //อัปโหลดรูป กรณีเลือกรูป ไปที่ 2berxybucket
     if(imageFile){
       //เปลี่ยนชื่อไฟล์ของรูปเพื่อไม่ให้ซ้า
       let newImageFile = `${Date.now()}_${imageFile.name}`
 
       //อัปโหลดไปยัง storage ที่ supabase
       const {  error } = await supabase.storage
-                                .from('task_bk')
+                                .from('2berxybucket')
                                 .upload(newImageFile, imageFile)
       
       if(error){
@@ -52,7 +52,7 @@ export default function AddTask() {
       }else{
         //ไปเอาที่อยู่ของรูปที่ storage ที่ supabase มากำหนดให้กับตัวแปร imageUrl
         const { data } = supabase.storage
-                                .from('task_bk')
+                                .from('2berxybucket')
                                 .getPublicUrl(newImageFile)
 
         imageUrl = data.publicUrl
@@ -153,4 +153,5 @@ export default function AddTask() {
     </div>
   )
 }
+
 
